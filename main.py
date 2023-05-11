@@ -1,6 +1,3 @@
-# criar uma lista com as notas dos candidatos no formato string "eX_tX_pX_sX"
-# e = entrevista // t = teórico // p = prático // s = soft skill
-
 def selecao(entrevistaCorte, teoricoCorte, praticoCorte, softCorte, lista):
     selecionados_e = []
     selecionados_t = []
@@ -26,7 +23,8 @@ def selecao(entrevistaCorte, teoricoCorte, praticoCorte, softCorte, lista):
             selecionados_final.append(selecionados_p[candidato])
     return selecionados_final
 
-
+# lista de candidatos no formato string "eX_tX_pX_sX" 
+# e = entrevista // t = teórico // p = prático // s = soft skill
 CandidatosNota = ['e7_t9_p10_s8',
                   'e4_t4_p8_s8',
                   'e8_t10_p7_s7',
@@ -58,5 +56,11 @@ entrevistaCorte = int(input('Qual a nota mínima de ENTREVISTA você procura?\nN
 teoricoCorte = int(input('Qual a nota mínima no TESTE TEÓRICO você procura?\nNota: '))
 praticoCorte = int(input('Qual a nota mínima no TESTE PRÁTICO você procura?\nNota: '))
 softCorte = int(input('Qual a nota mínima de SOFT SKILLS você procura?\nNota: '))
-print(f'Os candidatos que passam nos requerimentos são os que possuem a nota: '
-      f'{selecao(entrevistaCorte, teoricoCorte, praticoCorte, softCorte, CandidatosNota)}')
+selecionados = selecao(entrevistaCorte, teoricoCorte, praticoCorte, softCorte, CandidatosNota)
+if len(selecionados) == 1:
+    print(f'Somente o candidato com as notas {selecionados[0]} cumpre os requerimentos desejados.')
+elif len(selecionados) == 0:
+    print('Nenhum candidato atende os requerimentos desejados.')
+else:
+    print('As notas dos candidatos que passam nos requerimentos são: \n'
+          f'{" || ".join(selecionados)}')
