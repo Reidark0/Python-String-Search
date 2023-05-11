@@ -47,4 +47,15 @@ CandidatosLista = ['e7_t9_p10_s8',
                 'e1_t5_p5_s2',
                 'e5_t8_p1_s5']
 
-print(selecao(4, 8, 8, 8, CandidatosLista))
+print('Temos 20 candidatos que passaram por 4 exames e receberam 4 notas\n'
+      'O primeiro exame foi de Entrevista\n'
+      'O segundo exame foi um teste teórico\n'
+      'O terceiro exame foi um teste prático\n'
+      'E por fim o quarto exame foi uma avaliação das soft skills do candidato.\n'
+      'As notas são de 0 a 10 e aqui você vai poder filtrar os resultados.')
+entrevistaCorte = int(input('Qual a nota mínima de ENTREVISTA você procura?\nNota: '))
+teoricoCorte = int(input('Qual a nota mínima no TESTE TEÓRICO você procura?\nNota: '))
+praticoCorte = int(input('Qual a nota mínima no TESTE PRÁTICO você procura?\nNota: '))
+softCorte = int(input('Qual a nota mínima de SOFT SKILLS você procura?\nNota: '))
+print(f'Os candidatos que passam nos requerimentos são os que possuem a nota: '
+      f'{selecao(entrevistaCorte, teoricoCorte, praticoCorte, softCorte, CandidatosLista)}')
