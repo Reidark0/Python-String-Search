@@ -27,35 +27,36 @@ def selecao(entrevistaCorte, teoricoCorte, praticoCorte, softCorte, lista):
     return selecionados_final
 
 
-CandidatosLista = ['e7_t9_p10_s8',
-                'e8_t10_p7_s7',
-                'e4_t1_p3_s2',
-                'e4_t10_p3_s10',
-                'e9_t3_p5_s1',
-                'e7_t9_p5_s6',
-                'e1_t2_p8_s3',
-                'e8_t10_p8_s6',
-                'e9_t8_p3_s3',
-                'e7_t8_p8_s6',
-                'e1_t4_p3_s1',
-                'e3_t2_p6_s5',
-                'e3_t8_p3_s9',
-                'e4_t10_p8_s3',
-                'e9_t10_p8_s9',
-                'e1_t6_p3_s6',
-                'e5_t2_p4_s9',
-                'e1_t5_p5_s2',
-                'e5_t8_p1_s5']
+CandidatosNota = ['e7_t9_p10_s8',
+                  'e4_t4_p8_s8',
+                  'e8_t10_p7_s7',
+                  'e4_t1_p3_s2',
+                  'e4_t10_p3_s10',
+                  'e9_t3_p5_s1',
+                  'e7_t9_p5_s6',
+                  'e1_t2_p8_s3',
+                  'e8_t10_p8_s6',
+                  'e9_t8_p3_s3',
+                  'e7_t8_p8_s6',
+                  'e1_t4_p3_s1',
+                  'e3_t2_p6_s5',
+                  'e3_t8_p3_s9',
+                  'e4_t10_p8_s3',
+                  'e9_t10_p8_s9',
+                  'e1_t6_p3_s6',
+                  'e5_t2_p4_s9',
+                  'e1_t5_p5_s2',
+                  'e5_t8_p1_s5']
 
-print('Temos 20 candidatos que passaram por 4 exames e receberam 4 notas\n'
-      'O primeiro exame foi de Entrevista\n'
-      'O segundo exame foi um teste teórico\n'
-      'O terceiro exame foi um teste prático\n'
-      'E por fim o quarto exame foi uma avaliação das soft skills do candidato.\n'
-      'As notas são de 0 a 10 e aqui você vai poder filtrar os resultados.')
+print(f'Temos {len(CandidatosNota)} candidatos que passaram por 4 etapas de seleção e receberam 4 notas\n'
+      'A primeira etapa foi uma Entrevista\n'
+      'A segunda etapa foi um teste teórico\n'
+      'A terceira etapa foi um teste prático\n'
+      'E por fim a quarta etapa foi uma avaliação das soft skills do candidato.\n'
+      'As notas são de 0 a 10 e aqui você vai poder filtrar os resultados.\n')
 entrevistaCorte = int(input('Qual a nota mínima de ENTREVISTA você procura?\nNota: '))
 teoricoCorte = int(input('Qual a nota mínima no TESTE TEÓRICO você procura?\nNota: '))
 praticoCorte = int(input('Qual a nota mínima no TESTE PRÁTICO você procura?\nNota: '))
 softCorte = int(input('Qual a nota mínima de SOFT SKILLS você procura?\nNota: '))
 print(f'Os candidatos que passam nos requerimentos são os que possuem a nota: '
-      f'{selecao(entrevistaCorte, teoricoCorte, praticoCorte, softCorte, CandidatosLista)}')
+      f'{selecao(entrevistaCorte, teoricoCorte, praticoCorte, softCorte, CandidatosNota)}')
