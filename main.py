@@ -1,27 +1,42 @@
-def selecao(entrevistaCorte, teoricoCorte, praticoCorte, softCorte, lista):
-    selecionados_e = []
-    selecionados_t = []
-    selecionados_p = []
-    selecionados_final = []
-    # e_nota, t_nota, p_nota e s_nota servem para reduzir o tamanho do código.
-    for candidato in range(len(lista)): 
-        # pega o item da lista, faz um slicing da string, isola a nota e converte em int
-        e_nota = lista[candidato]
+def selecionados_e(candidatos, entrevistaCorte):
+    aprovados_e = []
+    for candidato in range(len(candidatos)): 
+        e_nota = candidatos[candidato]
         if int(e_nota[e_nota.find('e') + 1:e_nota.find('_')]) >= entrevistaCorte:   # Corte da entrevista
-            selecionados_e.append(e_nota) 
-    for candidato in range(len(selecionados_e)): 
-        t_nota = selecionados_e[candidato][selecionados_e[candidato].find('_') +1:]
+            aprovados_e.append(e_nota)
+    return aprovados_e
+
+def selecionados_t(candidatos, teoricoCorte): 
+    aprovados_t = []
+    for candidato in range(len(candidatos)): 
+        t_nota = candidatos[candidato][candidatos[candidato].find('_') +1:]
         if int(t_nota[t_nota.find('t') + 1 : t_nota.find('_')]) >= teoricoCorte:    # Corte do teórico
-            selecionados_t.append(selecionados_e[candidato])
-    for candidato in range(len(selecionados_t)):
-        p_nota = selecionados_t[candidato][selecionados_t[candidato].find('p'):]
+            aprovados_t.append(candidatos[candidato])
+    return aprovados_t
+        
+def selecionados_p(candidatos, praticoCorte):
+    aprovados_p = []
+    for candidato in range(len(candidatos)):
+        p_nota = candidatos[candidato][candidatos[candidato].find('p'):]
         if int(p_nota[p_nota.find('p') + 1:p_nota.find('_')]) >= praticoCorte:      # Corte do prático
-            selecionados_p.append(selecionados_t[candidato])
-    for candidato in range(len(selecionados_p)):
-        s_nota = selecionados_p[candidato][selecionados_p[candidato].find('s') + 1:]
+            aprovados_p.append(candidatos[candidato])
+    return aprovados_p
+
+def selecionados_s(candidatos, softCorte):
+    aprovados_s = []
+    for candidato in range(len(candidatos)):
+        s_nota = candidatos[candidato][candidatos[candidato].find('s') + 1:]
         if int(s_nota) >= softCorte:                                                # Corte do Soft
-            selecionados_final.append(selecionados_p[candidato])
-    return selecionados_final
+            aprovados_s.append(candidatos[candidato])
+    return aprovados_s
+
+def selecao(entrevistaCorte, teoricoCorte, praticoCorte, softCorte, candidatos):
+    candidatos = selecionados_e(candidatos, entrevistaCorte)
+    candidatos = selecionados_t(candidatos, teoricoCorte)
+    candidatos = selecionados_p(candidatos, praticoCorte)
+    candidatos = selecionados_s(candidatos, softCorte)
+    return candidatos
+
 
 CandidatosNota = ['e7_t9_p10_s8',
                   'e4_t4_p8_s8',
@@ -54,11 +69,12 @@ entrevistaCorte = int(input('Qual a nota mínima de ENTREVISTA você procura?\nN
 teoricoCorte = int(input('Qual a nota mínima no TESTE TEÓRICO você procura?\nNota: '))
 praticoCorte = int(input('Qual a nota mínima no TESTE PRÁTICO você procura?\nNota: '))
 softCorte = int(input('Qual a nota mínima de SOFT SKILLS você procura?\nNota: '))
-selecionados = selecao(entrevistaCorte, teoricoCorte, praticoCorte, softCorte, CandidatosNota)
-if len(selecionados) == 1:
-    print(f'Somente o candidato com as notas {selecionados[0]} cumpre os requerimentos desejados.')
-elif len(selecionados) == 0:
+classificados = selecao(entrevistaCorte, teoricoCorte, praticoCorte, softCorte, CandidatosNota)
+if len(classificados) == 1:
+    print(f'Somente o candidato com as notas {classificados[0]} cumpre os requerimentos desejados.')
+elif len(classificados) == 0:
     print('Nenhum candidato atende os requerimentos desejados.')
 else:
     print('As notas dos candidatos que passam nos requerimentos são: \n'
-          f'{" || ".join(selecionados)}')
+        f'{" || ".join(classificados)}')
+    
