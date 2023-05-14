@@ -6,7 +6,7 @@ def sair():
         print('Tudo bem, volte se precisar fazer outra consulta ou atualize a lista de candidatos.')
         exit()
     elif decisaoSair == 1:
-        print('Digite as notas:')
+        print('Digite as notas:\n')
 
 def cortarCandidato(candidato, inicio, fim=None):
     candidato = candidato[candidato.find(inicio):]
