@@ -36,7 +36,16 @@ def selecao(entrevistaCorte, teoricoCorte, praticoCorte, softCorte, candidatos):
     candidatos = selecionados_p(candidatos, praticoCorte)
     candidatos = selecionados_s(candidatos, softCorte)
     return candidatos
-
+    
+def sair():
+    decisaoSair = int(input('Você deseja fazer outra selação usando requisitos diferentes?\n'
+                            '1 - Sim\n'
+                            '0 - Não\n'))
+    if decisaoSair == 0:
+        print('Tudo bem, volte se precisar fazer uma consulta novamente.')
+        exit()
+    elif decisaoSair == 1:
+        print('Digite as notas:')
 
 CandidatosNota = ['e7_t9_p10_s8',
                   'e4_t4_p8_s8',
@@ -65,16 +74,18 @@ print(f'Temos {len(CandidatosNota)} candidatos que passaram por 4 etapas de sele
       'A terceira etapa foi um teste prático\n'
       'E por fim a quarta etapa foi uma avaliação das soft skills do candidato.\n'
       'As notas são de 0 a 10 e aqui você vai poder filtrar os resultados.\n')
-entrevistaCorte = int(input('Qual a nota mínima de ENTREVISTA você procura?\nNota: '))
-teoricoCorte = int(input('Qual a nota mínima no TESTE TEÓRICO você procura?\nNota: '))
-praticoCorte = int(input('Qual a nota mínima no TESTE PRÁTICO você procura?\nNota: '))
-softCorte = int(input('Qual a nota mínima de SOFT SKILLS você procura?\nNota: '))
-classificados = selecao(entrevistaCorte, teoricoCorte, praticoCorte, softCorte, CandidatosNota)
-if len(classificados) == 1:
-    print(f'Somente o candidato com as notas {classificados[0]} cumpre os requerimentos desejados.')
-elif len(classificados) == 0:
-    print('Nenhum candidato atende os requerimentos desejados.')
-else:
-    print('As notas dos candidatos que passam nos requerimentos são: \n'
-        f'{" || ".join(classificados)}')
-    
+ficar = 0
+while ficar == 0:
+    entrevistaCorte = int(input('Qual a nota mínima de ENTREVISTA você procura?\nNota: '))
+    teoricoCorte = int(input('Qual a nota mínima no TESTE TEÓRICO você procura?\nNota: '))
+    praticoCorte = int(input('Qual a nota mínima no TESTE PRÁTICO você procura?\nNota: '))
+    softCorte = int(input('Qual a nota mínima de SOFT SKILLS você procura?\nNota: '))
+    selecionados = selecao(entrevistaCorte, teoricoCorte, praticoCorte, softCorte, CandidatosNota)
+    if len(selecionados) == 1:
+        print(f'Somente o candidato com as notas || {selecionados[0]} || cumpre os requerimentos desejados.\n')
+    elif len(selecionados) == 0:
+        print('Nenhum candidato atende os requerimentos desejados.\n')
+    else:
+        print('As notas dos candidatos que passam nos requerimentos são: \n'
+            f'{" || ".join(selecionados)}\n')
+    sair()
