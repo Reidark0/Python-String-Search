@@ -7,16 +7,22 @@ python 3.11.3
 clone o repositório git e rode o main.py no python de mesma versão
 
 ## Guia de Utilização
-### Lista de candidatos
+* ### Sobre a lista de candidatos
 As notas dos candidatos são de 1 a 10, pois candidatos com nota zero seriam eliminados.
 As notas dos exames são compostas apenas por numeros inteiros.
 O formato dos itens é string no formato "eX_tX_pX_sX" onde:
 e = entrevista // t = teórico // p = prático // s = soft skill // X = notas de 1 a 10
 
-### Sobre os inputs
+* ### Sobre os inputs
 Os inputs que devem ser colocado estão restritos a números inteiros
 As notas de corte incluem os numeros maiores e igausi ao inserido nos resultados
 
-### Sobre o output
+* ### Sobre o output
 Os  resultados devolvem apenas a nota do(s) candidato(s) que passaram em todos os testes e 
 depois há a oportunidade de refazer a pesquisa nos mesmos candidatos.
+
+* ### Sobre o Código
+**candidato*s*** sempre se refere a lista
+**candidato** sempre se refere as strings dentro da lista
+candidato **DEVE** seguir o modelo "eX_tX_pX_sX"
+inputs **DEVEM** ser números inteiros

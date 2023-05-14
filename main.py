@@ -1,37 +1,47 @@
-def corteString(string, inicio, fim=None):
-    string = string[string.find(inicio):]
+def sair():
+    decisaoSair = int(input('Você deseja fazer outra selação usando requisitos diferentes nos mesmo candidatos?\n'
+                            '1 - Sim\n'
+                            '0 - Não\n'))
+    if decisaoSair == 0:
+        print('Tudo bem, volte se precisar fazer outra consulta ou atualize a lista de candidatos.')
+        exit()
+    elif decisaoSair == 1:
+        print('Digite as notas:')
+
+def cortarCandidato(candidato, inicio, fim=None):
+    candidato = candidato[candidato.find(inicio):]
     if fim is not None:
-        corte = string[string.find(inicio) + 1:string.find(fim)]
+        corte = candidato[candidato.find(inicio) + 1:candidato.find(fim)]
         return corte
     else: 
-        corte = string[string.find(inicio) + 1:]
+        corte = candidato[candidato.find(inicio) + 1:]
         return corte
     
 def selecionados_e(candidatos, entrevistaCorte):
     aprovados_e = []
     for candidato in candidatos: 
-        if int(corteString(candidato, 'e', '_')) >= entrevistaCorte:   # Corte da entrevista
+        if int(cortarCandidato(candidato, 'e', '_')) >= entrevistaCorte:   # Corte da entrevista
             aprovados_e.append(candidato)
     return aprovados_e
 
 def selecionados_t(candidatos, teoricoCorte): 
     aprovados_t = []
     for candidato in candidatos: 
-        if int(corteString(candidato, 't', '_')) >= teoricoCorte:    # Corte do teórico
+        if int(cortarCandidato(candidato, 't', '_')) >= teoricoCorte:    # Corte do teórico
             aprovados_t.append(candidato)
     return aprovados_t
         
 def selecionados_p(candidatos, praticoCorte):
     aprovados_p = []
     for candidato in candidatos:
-        if int(corteString(candidato, 'p', '_')) >= praticoCorte:      # Corte do prático
+        if int(cortarCandidato(candidato, 'p', '_')) >= praticoCorte:      # Corte do prático
             aprovados_p.append(candidato)
     return aprovados_p
 
 def selecionados_s(candidatos, softCorte):
     aprovados_s = []
     for candidato in candidatos:
-        if int(corteString(candidato, 's')) >= softCorte:                                                # Corte do Soft
+        if int(cortarCandidato(candidato, 's')) >= softCorte:                                                # Corte do Soft
             aprovados_s.append(candidato)
     return aprovados_s
 
@@ -41,18 +51,9 @@ def selecao(entrevistaCorte, teoricoCorte, praticoCorte, softCorte, candidatos):
     candidatos = selecionados_p(candidatos, praticoCorte)
     candidatos = selecionados_s(candidatos, softCorte)
     return candidatos
-    
-def sair():
-    decisaoSair = int(input('Você deseja fazer outra selação usando requisitos diferentes?\n'
-                            '1 - Sim\n'
-                            '0 - Não\n'))
-    if decisaoSair == 0:
-        print('Tudo bem, volte se precisar fazer uma consulta novamente.')
-        exit()
-    elif decisaoSair == 1:
-        print('Digite as notas:')
 
-CandidatosNotas = ['e7_t9_p10_s8',
+
+Candidatos = ['e7_t9_p10_s8',
                   'e4_t4_p8_s8',
                   'e8_t10_p7_s7',
                   'e4_t1_p3_s2',
@@ -73,7 +74,7 @@ CandidatosNotas = ['e7_t9_p10_s8',
                   'e1_t5_p5_s2',
                   'e5_t8_p1_s5']
 
-print(f'Temos {len(CandidatosNotas)} candidatos que passaram por 4 etapas de seleção e receberam 4 notas\n'
+print(f'Temos {len(Candidatos)} candidatos que passaram por 4 etapas de seleção e receberam 4 notas\n'
       'A primeira etapa foi uma Entrevista\n'
       'A segunda etapa foi um teste teórico\n'
       'A terceira etapa foi um teste prático\n'
@@ -85,7 +86,7 @@ while ficar == 0:
     teoricoCorte = int(input('Qual a nota mínima no TESTE TEÓRICO você procura?\nNota: '))
     praticoCorte = int(input('Qual a nota mínima no TESTE PRÁTICO você procura?\nNota: '))
     softCorte = int(input('Qual a nota mínima de SOFT SKILLS você procura?\nNota: '))
-    selecionados = selecao(entrevistaCorte, teoricoCorte, praticoCorte, softCorte, CandidatosNotas)
+    selecionados = selecao(entrevistaCorte, teoricoCorte, praticoCorte, softCorte, Candidatos)
     if len(selecionados) == 1:
         print(f'\nSomente o candidato com as notas || {selecionados[0]} || cumpre os requerimentos desejados.\n')
     elif len(selecionados) == 0:
