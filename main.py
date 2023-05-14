@@ -23,8 +23,6 @@ def selecao(entrevistaCorte, teoricoCorte, praticoCorte, softCorte, lista):
             selecionados_final.append(selecionados_p[candidato])
     return selecionados_final
 
-# lista de candidatos no formato string "eX_tX_pX_sX" 
-# e = entrevista // t = teórico // p = prático // s = soft skill
 CandidatosNota = ['e7_t9_p10_s8',
                   'e4_t4_p8_s8',
                   'e8_t10_p7_s7',
