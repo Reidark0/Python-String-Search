@@ -22,7 +22,7 @@ Os  resultados devolvem apenas a nota do(s) candidato(s) que passaram em todos o
 depois há a oportunidade de refazer a pesquisa nos mesmos candidatos.
 
 * ### Sobre o Código
-**candidato*s*** sempre se refere a lista
-**candidato** sempre se refere as strings dentro da lista
-candidato **DEVE** seguir o modelo "eX_tX_pX_sX"
-inputs **DEVEM** ser números inteiros
+1. **candidato*s*** sempre se refere a lista
+2. **candidato** sempre se refere as strings dentro da lista
+3. candidato **DEVE** seguir o modelo "eX_tX_pX_sX"
+4. inputs **DEVEM** ser números inteiros
