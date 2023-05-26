@@ -17,39 +17,39 @@ def cortarCandidato(candidato, inicio, fim=None):   # Essa função faz slicing 
         corte = candidato[candidato.find(inicio) + 1:]  # (inicio) com 's' não há caracter no final, o número já está isolado
         return corte
     
-def selecionados_e(candidatos, entrevistaCorte):    # Elimina candidatos com nota inferior em entrevista
-    aprovados_e = []
+def filtrar_por_entrevista(candidatos, entrevistaNota):    # Elimina candidatos com nota inferior em entrevista
+    aprovados_entrevista = []
     for candidato in candidatos: 
-        if int(cortarCandidato(candidato, 'e', '_')) >= entrevistaCorte:   
-            aprovados_e.append(candidato)
-    return aprovados_e
+        if int(cortarCandidato(candidato, 'e', '_')) >= entrevistaNota:   
+            aprovados_entrevista.append(candidato)
+    return aprovados_entrevista
 
-def selecionados_t(candidatos, teoricoCorte):       # Elimina candidatos com nota inferior em teórico
-    aprovados_t = []
+def filtrar_por_teste_teorico(candidatos, teoricoNota):       # Elimina candidatos com nota inferior em teórico
+    aprovados_teste_teorico = []
     for candidato in candidatos: 
-        if int(cortarCandidato(candidato, 't', '_')) >= teoricoCorte:    
-            aprovados_t.append(candidato)
-    return aprovados_t
+        if int(cortarCandidato(candidato, 't', '_')) >= teoricoNota:    
+            aprovados_teste_teorico.append(candidato)
+    return aprovados_teste_teorico
         
-def selecionados_p(candidatos, praticoCorte):       # Elimina candidatos com nota inferior em prático
-    aprovados_p = []
+def filtrar_por_teste_pratico(candidatos, praticoNota):       # Elimina candidatos com nota inferior em prático
+    aprovados_teste_pratico = []
     for candidato in candidatos:
-        if int(cortarCandidato(candidato, 'p', '_')) >= praticoCorte:      
-            aprovados_p.append(candidato)
-    return aprovados_p
+        if int(cortarCandidato(candidato, 'p', '_')) >= praticoNota:      
+            aprovados_teste_pratico.append(candidato)
+    return aprovados_teste_pratico
 
-def selecionados_s(candidatos, softCorte):          # Elimina candidatos com nota inferior em soft
-    aprovados_s = []
+def filtrar_por_softskill(candidatos, softskillNota):          # Elimina candidatos com nota inferior em soft
+    aprovados_soft_skills = []
     for candidato in candidatos:
-        if int(cortarCandidato(candidato, 's')) >= softCorte:
-            aprovados_s.append(candidato)
-    return aprovados_s
+        if int(cortarCandidato(candidato, 's')) >= softskillNota:
+            aprovados_soft_skills.append(candidato)
+    return aprovados_soft_skills
 
-def selecao(entrevistaCorte, teoricoCorte, praticoCorte, softCorte, candidatos):# função principal = união de todas as seleções
-    candidatos = selecionados_e(candidatos, entrevistaCorte)
-    candidatos = selecionados_t(candidatos, teoricoCorte)
-    candidatos = selecionados_p(candidatos, praticoCorte)
-    candidatos = selecionados_s(candidatos, softCorte)
+def selecao(entrevistaNota, teoricoNota, praticoNota, softskillNota, candidatos):# função principal = união de todas as seleções
+    candidatos = filtrar_por_entrevista(candidatos, entrevistaNota)
+    candidatos = filtrar_por_teste_teorico(candidatos, teoricoNota)
+    candidatos = filtrar_por_teste_pratico(candidatos, praticoNota)
+    candidatos = filtrar_por_softskill(candidatos, softskillNota)
     return candidatos
 
 
@@ -85,12 +85,12 @@ print(f'Temos {len(Candidatos)} candidatos que passaram por 4 etapas de seleçã
 ficar = 0
 while ficar == 0:   # Loop para pesquisar de novo sem encerrar o programa.
 
-    entrevistaCorte = int(input('Qual a nota mínima de ENTREVISTA você procura?\nNota: '))
-    teoricoCorte = int(input('Qual a nota mínima no TESTE TEÓRICO você procura?\nNota: '))
-    praticoCorte = int(input('Qual a nota mínima no TESTE PRÁTICO você procura?\nNota: '))
-    softCorte = int(input('Qual a nota mínima de SOFT SKILLS você procura?\nNota: '))
+    entrevistaNota = int(input('Qual a nota mínima de ENTREVISTA você procura?\nNota: '))
+    teoricoNota = int(input('Qual a nota mínima no TESTE TEÓRICO você procura?\nNota: '))
+    praticoNota = int(input('Qual a nota mínima no TESTE PRÁTICO você procura?\nNota: '))
+    softskillNota = int(input('Qual a nota mínima de SOFT SKILLS você procura?\nNota: '))
 
-    selecionados = selecao(entrevistaCorte, teoricoCorte, praticoCorte, softCorte, Candidatos)
+    selecionados = selecao(entrevistaNota, teoricoNota, praticoNota, softskillNota, Candidatos)
 
     if len(selecionados) == 1:
         print(f'\nSomente o candidato com as notas || {selecionados[0]} || cumpre os requerimentos desejados.\n')
